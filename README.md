@@ -33,7 +33,7 @@ sudo apt-get install libtiff5-dev libjpeg8-dev \
 pip3 install -r requirements.txt
 ```
 
-- Use to script to detect faces from an image, for example
+- Use the script to detect faces from an image, for example
 ```shell
 python3 face_detect.py --image-path images/sample.jpg --save-directory headshots
 ```
