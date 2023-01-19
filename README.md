@@ -12,6 +12,32 @@ Instructions:
 - The script should save the headshots in the specified directory with the file name in the format "face_1.jpg", "face_2.jpg", etc.
 
 
+## Solution 1:
+
+- Download the HaarCascade Model Pre-trained by OpenCV to Detect Frontal Face using the following command
+
+```shell
+wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml
+```
+
+- These pre-requisites may be required, if you're unable to install PIL
+```shell
+sudo apt-get install libtiff5-dev libjpeg8-dev \
+    zlib1g-dev libfreetype6-dev \
+    liblcms2-dev libwebp-dev \
+    tcl8.6-dev tk8.6-dev python-tk
+```
+
+- Install other requirements (it is recommended to use conda or docker)
+```shell
+pip3 install -r requirements.txt
+```
+
+- Use to script to detect faces from an image, for example
+```shell
+python3 face_detect.py --image-path images/sample.jpg --save-directory headshots
+```
+
 ## Problem 2: 
 Move all image files from one S3 bucket to another S3 bucket, but only if the image has no transparent pixels.
 
