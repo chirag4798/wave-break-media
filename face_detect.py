@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
 import os
 import cv2
 import argparse
-import numpy as np
 from PIL import Image
 
 def detect_faces(image_path, save_directory):
@@ -12,9 +12,9 @@ def detect_faces(image_path, save_directory):
     # Create Directory if not already exists
     os.makedirs(save_directory, exist_ok=True)
     assert os.path.isfile(image_path), "Image path does not exist or is invalid"
-    assert image_path.lower().endswith("jpg") or \
-           image_path.lower().endswith("jpeg") or \
-           image_path.lower().endswith("png"), "Specified path is not a valid image"
+
+    file_extension = os.path.splitext(image_path)[-1].strip('.').lower()
+    assert file_extension in {"jpg", "jpeg", "png"}, "Specified path does not have a valid file extension"
 
     # Load the cascade classifier
     face_cascade = cv2.CascadeClassifier("models/haarcascade_frontalface_default.xml")
@@ -42,8 +42,8 @@ def detect_faces(image_path, save_directory):
 if __name__ == "__main__":
     # Argument parser for CLI
     parser = argparse.ArgumentParser(description="Detect, crop and save faces from images in a directory")
-    parser.add_argument("--image-path", type=str, help="path to the input image.")
-    parser.add_argument("--save-directory", type=str, help="path of the directory to save the headshots.")
+    parser.add_argument("image-path", type=str, help="path to the input image.")
+    parser.add_argument("save-directory", type=str, help="path of the directory to save the headshots.")
 
     # Parse args and detect faces!
     args = parser.parse_args()
